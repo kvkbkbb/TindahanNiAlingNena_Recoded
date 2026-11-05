@@ -116,7 +116,7 @@ public class GameScreen : Form
         orderDisplay.BackColor = Color.White;
         orderDisplay.ForeColor = InkColor;
         orderDisplay.Font = new Font("Segoe UI", 10F);
-        orderDisplay.Padding = new Padding(36, 24, 36, 16);
+        orderDisplay.Padding = new Padding(36, 96, 36, 16);
     }
 
     private void SetupButtonPanel()

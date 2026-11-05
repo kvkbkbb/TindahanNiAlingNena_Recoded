@@ -8,12 +8,30 @@ public class ProductCatalog
 
     private readonly List<Product> _products = new()
     {
-        new Product("Ligo Sardines", 25),
-        new Product("Coke Sakto", 15),
+        new Product("Canned Sardines", 25),
+        new Product("Canned Corned Beef", 38),
         new Product("Instant Noodles", 12),
-        new Product("Sachet Shampoo", 6),
+        new Product("Soft Drink Bottle", 15),
+        new Product("Bottled Water", 10),
+        new Product("Instant Coffee Sachet", 5),
+        new Product("Shampoo Sachet", 6),
+        new Product("Laundry Soap Bar", 20),
+        new Product("Toothpaste Sachet", 8),
+        new Product("Cooking Oil Sachet", 18),
+        new Product("Soy Sauce Sachet", 7),
+        new Product("Vinegar Sachet", 7),
+        new Product("Salt Pack", 5),
+        new Product("Sugar Pack", 10),
+        new Product("Egg", 9),
+        new Product("Rice Cup", 14),
+        new Product("Biscuit Pack", 6),
+        new Product("Chips Pack", 12),
         new Product("Candy", 1),
-        new Product("Pandesal", 2)
+        new Product("Chewing Gum", 2),
+        new Product("Cigarette Stick", 8),
+        new Product("Matchbox", 3),
+        new Product("Candle", 5),
+        new Product("Bath Soap", 22)
     };
 
     public Product GetRandomProduct()
