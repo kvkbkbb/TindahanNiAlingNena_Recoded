@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build game project",
+			"type": "shell",
+			"command": "dotnet",
+			"args": [
+				"build",
+				"TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded.csproj"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build"
+		}
+	]
+}

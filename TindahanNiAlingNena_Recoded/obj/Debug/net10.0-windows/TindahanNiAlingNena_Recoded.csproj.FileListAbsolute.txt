@@ -1,0 +1,14 @@
+C:\Users\Kev\source\repos\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net10.0-windows\TindahanNiAlingNena_Recoded.exe
+C:\Users\Kev\source\repos\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net10.0-windows\TindahanNiAlingNena_Recoded.deps.json
+C:\Users\Kev\source\repos\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net10.0-windows\TindahanNiAlingNena_Recoded.runtimeconfig.json
+C:\Users\Kev\source\repos\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net10.0-windows\TindahanNiAlingNena_Recoded.dll
+C:\Users\Kev\source\repos\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net10.0-windows\TindahanNiAlingNena_Recoded.pdb
+C:\Users\Kev\source\repos\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net10.0-windows\TindahanNiAlingNena_Recoded.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kev\source\repos\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net10.0-windows\TindahanNiAlingNena_Recoded.AssemblyInfoInputs.cache
+C:\Users\Kev\source\repos\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net10.0-windows\TindahanNiAlingNena_Recoded.AssemblyInfo.cs
+C:\Users\Kev\source\repos\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net10.0-windows\TindahanNiAlingNena_Recoded.csproj.CoreCompileInputs.cache
+C:\Users\Kev\source\repos\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net10.0-windows\TindahanNiAlingNena_Recoded.dll
+C:\Users\Kev\source\repos\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net10.0-windows\refint\TindahanNiAlingNena_Recoded.dll
+C:\Users\Kev\source\repos\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net10.0-windows\TindahanNiAlingNena_Recoded.pdb
+C:\Users\Kev\source\repos\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net10.0-windows\TindahanNiAlingNena_Recoded.genruntimeconfig.cache
+C:\Users\Kev\source\repos\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net10.0-windows\ref\TindahanNiAlingNena_Recoded.dll
