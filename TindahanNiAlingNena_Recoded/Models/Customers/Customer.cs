@@ -14,7 +14,6 @@ public abstract class Customer
     private string name;
 
     private static Random random = new Random();
-    private static NameGenerator nameGenerator = new NameGenerator();
 
     public Customer(Order order)
     {
@@ -30,7 +29,7 @@ public abstract class Customer
             gender = Gender.Female;
         }
 
-        name = nameGenerator.GenerateName(gender);
+        name = NameGenerator.GenerateName(gender);
     }
 
     public string GetName()

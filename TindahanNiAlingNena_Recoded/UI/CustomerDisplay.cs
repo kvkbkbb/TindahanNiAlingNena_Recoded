@@ -1,4 +1,3 @@
-// UI/CustomerDisplay.cs
 namespace TindahanNiAlingNena_Recoded.UI;
 
 public enum CustomerState
@@ -10,88 +9,88 @@ public enum CustomerState
 
 public class CustomerDisplay : PictureBox
 {
-    private const int TotalCustomers = 10;   // C1 to C10
+    private const int TotalCustomers = 10;
 
-    // which customer numbers live in which folder
-    private int[] menNumbers = { 1, 3, 5, 6, 9, 10 };
-    private int[] womenNumbers = { 2, 4, 7, 8 };
-
-    private PictureBox customerPicture = new PictureBox();
-    private Random random = new Random();
+    private readonly int[] menNumbers = { 1, 3, 5, 6, 9, 10 };
+    private readonly int[] womenNumbers = { 2, 4, 7, 8 };
+    private readonly Random random = new();
+    private Image? customerImage;
 
     public CustomerDisplay()
     {
-        SizeMode = PictureBoxSizeMode.Zoom;
-        BackColor = Color.LightGray;   // shown when there is no background image
-
-        string backgroundPath = Path.Combine("Assets", "Background.png");
-
-        if (File.Exists(backgroundPath))
-        {
-            Image = Image.FromFile(backgroundPath);
-        }
-
-        customerPicture.Dock = DockStyle.Fill;
-        customerPicture.SizeMode = PictureBoxSizeMode.Zoom;
-        customerPicture.BackColor = Color.Transparent;
-        customerPicture.Visible = false;
-
-        Controls.Add(customerPicture);
+        BackColor = Color.FromArgb(32, 34, 30);
+        SizeMode = PictureBoxSizeMode.Normal;
     }
 
-    // Empties the display so only the background shows.
     public void DisplayBackground()
     {
-        customerPicture.Image = null;
-        customerPicture.Visible = false;
+        customerImage?.Dispose();
+        customerImage = null;
+        Invalidate();
     }
 
-    // Shows a customer in the given state.
-    // If customerNumber is left out, a random customer is chosen.
-    // Returns the number that was shown, so the same customer can be shown again later.
     public int DisplayCustomer(CustomerState state, int? customerNumber = null)
     {
-        int numberToShow;
-
-        if (customerNumber == null)
-        {
-            numberToShow = random.Next(1, TotalCustomers + 1);   // 1 to 10
-        }
-        else
-        {
-            numberToShow = customerNumber.Value;
-        }
-
+        int numberToShow = customerNumber ?? random.Next(1, TotalCustomers + 1);
         string genderFolder = GetGenderFolder(numberToShow);
-        string fileName = "C" + numberToShow + ".jpg";
-
+        string fileName = $"C{numberToShow}.jpg";
         string imagePath = Path.Combine("Assets", "Customers", state.ToString(), genderFolder, fileName);
 
-        customerPicture.Image = Image.FromFile(imagePath);
-        customerPicture.Visible = true;
+        using Image sourceImage = Image.FromFile(imagePath);
+        Image nextImage = new Bitmap(sourceImage);
+        Image? previousImage = customerImage;
+        customerImage = nextImage;
+        previousImage?.Dispose();
+        Invalidate();
 
         return numberToShow;
     }
 
-    // Works out whether a customer number is in the Men or Women folder.
+    protected override void OnPaint(PaintEventArgs e)
+    {
+        base.OnPaint(e);
+        if (customerImage == null || ClientSize.Width == 0 || ClientSize.Height == 0)
+        {
+            return;
+        }
+
+        float scale = Math.Max(
+            ClientSize.Width / (float)customerImage.Width,
+            ClientSize.Height / (float)customerImage.Height);
+        int width = (int)Math.Ceiling(customerImage.Width * scale);
+        int height = (int)Math.Ceiling(customerImage.Height * scale);
+        Rectangle destination = new(
+            (ClientSize.Width - width) / 2,
+            (ClientSize.Height - height) / 2,
+            width,
+            height);
+
+        e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+        e.Graphics.DrawImage(customerImage, destination);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            customerImage?.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private string GetGenderFolder(int customerNumber)
     {
-        foreach (int number in menNumbers)
+        if (menNumbers.Contains(customerNumber))
         {
-            if (number == customerNumber)
-            {
-                return "Men";
-            }
+            return "Men";
         }
 
-        foreach (int number in womenNumbers)
+        if (womenNumbers.Contains(customerNumber))
         {
-            if (number == customerNumber)
-            {
-                return "Women";
-            }
+            return "Women";
         }
 
-        throw new ArgumentException("There is no customer number " + customerNumber);
+        throw new ArgumentException($"There is no customer number {customerNumber}", nameof(customerNumber));
     }
 }

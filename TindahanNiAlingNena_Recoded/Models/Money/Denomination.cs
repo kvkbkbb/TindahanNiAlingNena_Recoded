@@ -5,4 +5,6 @@ public abstract class Denomination
     public int Value { get; set; }
 
     public string ImagePath { get; set; } = string.Empty;
+
+    public abstract void PlaySound();
 }

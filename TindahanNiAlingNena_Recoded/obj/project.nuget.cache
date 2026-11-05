@@ -1,13 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TR5EPIjFiWo=",
+  "dgSpecHash": "44CzdGAFGck=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Kev\\Documents\\Visual Studio\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Kev\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.33\\microsoft.netcore.app.ref.8.0.33.nupkg.sha512",
-    "C:\\Users\\Kev\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.33\\microsoft.windowsdesktop.app.ref.8.0.33.nupkg.sha512",
-    "C:\\Users\\Kev\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.33\\microsoft.aspnetcore.app.ref.8.0.33.nupkg.sha512",
-    "C:\\Users\\Kev\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.33\\microsoft.netcore.app.host.win-x64.8.0.33.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\Kevin\\Documents\\Visual Studio CODE\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

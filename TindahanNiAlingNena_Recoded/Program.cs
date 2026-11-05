@@ -14,7 +14,8 @@ screen.AskForMoreClicked += session.AskForMore;
 
 // game changes -> screen display
 session.StateChanged += screen.ShowState;
-session.MessageChanged += screen.ShowMessage;
+session.MessageSent += screen.ShowMessage;
+session.CustomerStarted += () => screen.ShowCustomer(CustomerState.Normal);
 
 session.Start();
 Application.Run(screen);

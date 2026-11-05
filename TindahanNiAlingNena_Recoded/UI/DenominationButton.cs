@@ -6,12 +6,11 @@ namespace TindahanNiAlingNena_Recoded.UI;
 public class DenominationButton : PictureBox
 {
     private Denomination denomination;
-    private float ImageScale = 0.16f;
-    private const int HoverGrowAmount = 10;
+    private const float ImageScale = 0.16f;
+    private readonly ToolTip toolTip = new();
 
     public DenominationButton(Denomination denomination)
     {
-        // Lets this PictureBox raise Click and DoubleClick events.
         SetStyle(ControlStyles.StandardClick | ControlStyles.StandardDoubleClick, true);
         this.denomination = denomination;
 
@@ -19,6 +18,11 @@ public class DenominationButton : PictureBox
         SizeMode = PictureBoxSizeMode.Zoom;
         Width = (int)(Image.Width * ImageScale);
         Height = (int)(Image.Height * ImageScale);
+        Cursor = Cursors.Hand;
+        BackColor = Color.Transparent;
+        AccessibleName = $"₱{denomination.Value}";
+        AccessibleDescription = $"Add a {denomination.Value} peso denomination to the change.";
+        toolTip.SetToolTip(this, $"Add ₱{denomination.Value}");
 
         if (denomination is Bill)
         {
@@ -27,24 +31,10 @@ public class DenominationButton : PictureBox
             Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
         }
 
-        MouseEnter += OnMouseEntered;
-        MouseLeave += OnMouseLeft;
     }
 
     public Denomination GetDenomination()
     {
         return denomination;
-    }
-
-    private void OnMouseEntered(object? sender, EventArgs e)
-    {
-        Width = Width + HoverGrowAmount;
-        Height = Height + HoverGrowAmount;
-    }
-
-    private void OnMouseLeft(object? sender, EventArgs e)
-    {
-        Width = Width - HoverGrowAmount;
-        Height = Height - HoverGrowAmount;
     }
 }

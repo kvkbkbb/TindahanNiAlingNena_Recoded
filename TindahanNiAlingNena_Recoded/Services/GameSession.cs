@@ -22,7 +22,8 @@ public class GameSession
 
     // order, amount paid, change being given, score
     public event Action<Order, int, int, int>? StateChanged;
-    public event Action<string>? MessageChanged;
+    public event Action<string>? MessageSent;
+    public event Action? CustomerStarted;
 
     public GameSession()
     {
@@ -45,6 +46,7 @@ public class GameSession
             return;
         }
 
+        piece.PlaySound();
         changeGiven.Add(piece);
         SendState();
     }
@@ -52,7 +54,6 @@ public class GameSession
     public void ClearChange()
     {
         changeGiven.Clear();
-        SendMessage("Change cleared.");
         SendState();
     }
 
@@ -68,14 +69,14 @@ public class GameSession
 
         if (amountPaid < orderTotal)
         {
-            SendMessage("The customer didn't pay enough! Ask for more money.");
+            SendFailure("The customer didn't pay enough! Ask for more money.");
             return;
         }
 
         if (!changeChecker.IsChangeCorrect(orderTotal, amountPaid, changeGiven))
         {
             changeGiven.Clear();
-            SendMessage("Wrong change! Try again.");
+            SendFailure("Wrong change! Try again.");
             SendState();
             return;
         }
@@ -86,6 +87,7 @@ public class GameSession
         }
 
         score++;
+        AudioPlayer.PlaySound("success.wav");
         StartNextCustomer();
     }
 
@@ -101,30 +103,27 @@ public class GameSession
 
         if (amountPaid >= orderTotal)
         {
-            SendMessage("The customer already paid enough!");
+            SendFailure("The customer already paid enough!");
             return;
         }
 
-        // the customer takes their money back
-        foreach (Denomination piece in currentPayment)
-        {
-            cashDrawer.RemovePiece(piece.Value);
-        }
-
-        score++;
-        StartNextCustomer();
+        List<Denomination> additionalPayment =
+            paymentGenerator.GenerateExactPayment(orderTotal - amountPaid);
+        currentPayment.AddRange(additionalPayment);
+        cashDrawer.AddPieces(additionalPayment);
+        SendState();
     }
 
     private void StartNextCustomer()
     {
         Order order = orderGenerator.GenerateOrder(1, 4);
-        int customerType = random.Next(3);
+        int customerType = random.Next(100);
 
-        if (customerType == 0)
+        if (customerType < 10)
         {
             currentCustomer = new ExactPayingCustomer(order);
         }
-        else if (customerType == 1)
+        else if (customerType < 80)
         {
             currentCustomer = new OverpayingCustomer(order);
         }
@@ -137,7 +136,7 @@ public class GameSession
         cashDrawer.AddPieces(currentPayment);
         changeGiven.Clear();
 
-        SendMessage("A customer is waiting.");
+        CustomerStarted?.Invoke();
         SendState();
     }
 
@@ -157,9 +156,15 @@ public class GameSession
 
     private void SendMessage(string message)
     {
-        if (MessageChanged != null)
+        if (MessageSent != null)
         {
-            MessageChanged.Invoke(message);
+            MessageSent.Invoke(message);
         }
+    }
+
+    private void SendFailure(string message)
+    {
+        AudioPlayer.PlaySound("fail.wav");
+        SendMessage(message);
     }
 }

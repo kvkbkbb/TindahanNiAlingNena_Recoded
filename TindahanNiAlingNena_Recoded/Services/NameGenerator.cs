@@ -2,26 +2,26 @@ using TindahanNiAlingNena_Recoded.Models.Customers;
 
 namespace TindahanNiAlingNena_Recoded.Services;
 
-public class NameGenerator
+public static class NameGenerator
 {
-    private Random random = new Random();
+    private static readonly Random random = new Random();
 
-    private string[] maleTitles = { "Pareng", "Kuya", "Mang", "Tatay", "Tito" };
-    private string[] femaleTitles = { "Mareng", "Ate", "Aleng", "Nanay", "Tita" };
+    private static readonly string[] maleTitles = { "Pareng", "Kuya", "Mang", "Tatay", "Tito" };
+    private static readonly string[] femaleTitles = { "Mareng", "Ate", "Aleng", "Nanay", "Tita" };
 
-    private string[] maleNames =
+    private static readonly string[] maleNames =
     {
         "Juan", "Jose", "Pedro", "Mario", "Ramon",
         "Eduardo", "Rodel", "Jun", "Totoy", "Berto"
     };
 
-    private string[] femaleNames =
+    private static readonly string[] femaleNames =
     {
         "Maria", "Rosa", "Luz", "Carmen", "Gloria",
         "Teresita", "Nena", "Lourdes", "Remedios", "Baby"
     };
 
-    public string GenerateName(Gender gender)
+    public static string GenerateName(Gender gender)
     {
         string title;
         string firstName;

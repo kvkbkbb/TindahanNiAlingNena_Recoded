@@ -57,3 +57,73 @@ C:\Users\Kev\Documents\Visual Studio\TindahanNiAlingNena_Recoded\TindahanNiAling
 C:\Users\Kev\Documents\Visual Studio\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Women\C4.jpg
 C:\Users\Kev\Documents\Visual Studio\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Women\C7.jpg
 C:\Users\Kev\Documents\Visual Studio\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Women\C8.jpg
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Bills\PHP_100.jpg
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Bills\PHP_1000.jpg
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Bills\PHP_20.jpg
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Bills\PHP_200.jpg
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Bills\PHP_50.jpg
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Bills\PHP_500.jpg
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Coins\PHP_1.png
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Coins\PHP_10.png
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Coins\PHP_5.png
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Men\C1.jpg
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Men\C10.jpg
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Men\C3.jpg
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Men\C5.jpg
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Men\C6.jpg
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Men\C9.jpg
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Women\C2.jpg
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Women\C4.jpg
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Women\C7.jpg
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Women\C8.jpg
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Receipt.png
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\TindahanNiAlingNena_Recoded.deps.json
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\TindahanNiAlingNena_Recoded.runtimeconfig.json
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\TindahanNiAlingNena_Recoded.dll
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\TindahanNiAlingNena_Recoded.pdb
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net8.0-windows\TindahanNiAlingNena_Recoded.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net8.0-windows\TindahanNiAlingNena_Recoded.AssemblyInfoInputs.cache
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net8.0-windows\TindahanNiAlingNena_Recoded.AssemblyInfo.cs
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net8.0-windows\TindahanNiAlingNena_Recoded.csproj.CoreCompileInputs.cache
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net8.0-windows\TindahanNiAlingNena_Recoded.sourcelink.json
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net8.0-windows\TindahanNiAlingNena_Recoded.dll
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net8.0-windows\refint\TindahanNiAlingNena_Recoded.dll
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net8.0-windows\TindahanNiAlingNena_Recoded.pdb
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net8.0-windows\TindahanNiAlingNena_Recoded.genruntimeconfig.cache
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net8.0-windows\ref\TindahanNiAlingNena_Recoded.dll
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Sounds\coin.wav
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Sounds\paper.wav
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\TindahanNiAlingNena_Recoded.exe
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Bills\PHP_100.jpg
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Bills\PHP_1000.jpg
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Bills\PHP_20.jpg
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Bills\PHP_200.jpg
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Bills\PHP_50.jpg
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Bills\PHP_500.jpg
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Coins\PHP_1.png
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Coins\PHP_10.png
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Coins\PHP_5.png
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Customers\Normal\Men\C1.jpg
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Customers\Normal\Men\C10.jpg
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Customers\Normal\Men\C3.jpg
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Customers\Normal\Men\C5.jpg
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Customers\Normal\Men\C6.jpg
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Customers\Normal\Men\C9.jpg
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Customers\Normal\Women\C2.jpg
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Customers\Normal\Women\C4.jpg
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Customers\Normal\Women\C7.jpg
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Customers\Normal\Women\C8.jpg
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Receipt.png
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Sounds\coin.wav
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Sounds\paper.wav
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\TindahanNiAlingNena_Recoded.exe
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\TindahanNiAlingNena_Recoded.deps.json
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\TindahanNiAlingNena_Recoded.runtimeconfig.json
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\TindahanNiAlingNena_Recoded.dll
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\TindahanNiAlingNena_Recoded.pdb
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Sounds\button.wav
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Sounds\fail.wav
+C:\Users\Kevin\Documents\Visual Studio CODE\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Sounds\success.wav
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Sounds\button.wav
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Sounds\fail.wav
+C:\Users\Kevin\AppData\Local\Temp\TindahanNiAlingNena-build\Assets\Sounds\success.wav

@@ -1,3 +1,5 @@
+using TindahanNiAlingNena_Recoded.Services;
+
 namespace TindahanNiAlingNena_Recoded.Models.Money;
 
 // Sealed == Inheritance Restricted
@@ -9,6 +11,11 @@ public sealed class Coin : Denomination
     {
         Value = value;
         ImagePath = imagePath;
+    }
+
+    public override void PlaySound()
+    {
+        AudioPlayer.PlaySound("coin.wav");
     }
 
     public static Dictionary<int, Coin> Denominations { get; } = new()
