@@ -10,14 +10,16 @@ public class DenominationPanel : FlowLayoutPanel
 
     public DenominationPanel()
     {
+        // So the for loop is reversed.
+        List<Bill> bills = new List<Bill>(Bill.Denominations.Values);
+        for (int i = bills.Count - 1; i >= 0; i--)
+        {
+            AddButton(bills[i]);
+        }
+
         foreach (Coin coin in Coin.Denominations.Values)
         {
             AddButton(coin);
-        }
-
-        foreach (Bill bill in Bill.Denominations.Values)
-        {
-            AddButton(bill);
         }
     }
 
@@ -30,11 +32,12 @@ public class DenominationPanel : FlowLayoutPanel
 
     private void OnButtonClicked(object? sender, EventArgs e)
     {
-        DenominationButton clicked = (DenominationButton)sender!;
+        DenominationButton clickedButton = (DenominationButton)sender!;
+        Denomination clickedDenomination = clickedButton.GetDenomination();
 
-        if (DenominationClicked != null)
-        {
-            DenominationClicked.Invoke(clicked.GetDenomination());
-        }
+        // DenominationClicked is an event, and an event with no subscribers is null. Kaya may check before invoking.
+        if (DenominationClicked == null) {return;}
+
+        DenominationClicked.Invoke(clickedDenomination);
     }
 }

@@ -1,4 +1,3 @@
-// UI/GameScreen.cs
 using TindahanNiAlingNena_Recoded.Models;
 using TindahanNiAlingNena_Recoded.Models.Money;
 
@@ -6,11 +5,14 @@ namespace TindahanNiAlingNena_Recoded.UI;
 
 public class GameScreen : Form
 {
-    // like BindableEvents: Program.cs connects these to the Game
     public event Action<Denomination>? DenominationClicked;
     public event Action? GiveChangeClicked;
     public event Action? ClearClicked;
     public event Action? AskForMoreClicked;
+
+    private TableLayoutPanel mainLayout = new TableLayoutPanel();
+    private FlowLayoutPanel buttonPanel = new FlowLayoutPanel();
+    private FlowLayoutPanel infoPanel = new FlowLayoutPanel();
 
     private OrderDisplay orderDisplay = new OrderDisplay();
     private DenominationPanel denominationPanel = new DenominationPanel();
@@ -23,30 +25,84 @@ public class GameScreen : Form
         Width = 950;
         Height = 750;
 
-        orderDisplay.Location = new Point(20, 20);
-        orderDisplay.Size = new Size(400, 200);
+        SetupMainLayout();
+        SetupOrderDisplay();
+        SetupButtonPanel();
+        SetupInfoPanel();
+        SetupCashbox();
 
-        statusLabel.Location = new Point(20, 240);
-        statusLabel.Size = new Size(640, 30);
+        // Controls.Add(control, column, row)
+        mainLayout.Controls.Add(orderDisplay, 1, 0);
+        mainLayout.Controls.Add(buttonPanel, 1, 1);
+        mainLayout.Controls.Add(infoPanel, 1, 2);
+        mainLayout.Controls.Add(denominationPanel, 0, 3);
+        mainLayout.SetColumnSpan(denominationPanel, 2);   // cashbox stretches across both columns
 
-        scoreLabel.Location = new Point(440, 20);
-        scoreLabel.Size = new Size(200, 30);
-
-        denominationPanel.Location = new Point(20, 300);
-        denominationPanel.Size = new Size(660, 150);
-        denominationPanel.DenominationClicked += OnPanelDenominationClicked;
-
-        Controls.Add(orderDisplay);
-        Controls.Add(statusLabel);
-        Controls.Add(scoreLabel);
-        Controls.Add(denominationPanel);
-
-        AddActionButton("Give Change", 20, OnGiveChangeButtonClicked);
-        AddActionButton("Clear Change", 180, OnClearButtonClicked);
-        AddActionButton("Ask for More Money", 340, OnAskForMoreButtonClicked);
+        Controls.Add(mainLayout);
     }
 
-    // Program.cs connects these two to the Game's events
+    // ---------- building the screen ----------
+
+    private void SetupMainLayout()
+    {
+        mainLayout.Dock = DockStyle.Fill;
+        mainLayout.ColumnCount = 2;
+        mainLayout.RowCount = 4;
+
+        mainLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
+        mainLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
+
+        mainLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 35f));   // order display
+        mainLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 12f));   // action buttons
+        mainLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 10f));   // score and status
+        mainLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 43f));   // cashbox
+    }
+
+    private void SetupOrderDisplay()
+    {
+        orderDisplay.Dock = DockStyle.Fill;
+        orderDisplay.BackColor = Color.CadetBlue;
+    }
+
+    private void SetupButtonPanel()
+    {
+        buttonPanel.Dock = DockStyle.Fill;
+
+        AddActionButton("Give Change", OnGiveChangeButtonClicked);
+        AddActionButton("Clear Change", OnClearButtonClicked);
+        AddActionButton("Ask for More Money", OnAskForMoreButtonClicked);
+    }
+
+    private void SetupInfoPanel()
+    {
+        infoPanel.Dock = DockStyle.Fill;
+        infoPanel.FlowDirection = FlowDirection.TopDown;
+
+        scoreLabel.AutoSize = true;
+        statusLabel.AutoSize = true;
+
+        infoPanel.Controls.Add(scoreLabel);
+        infoPanel.Controls.Add(statusLabel);
+    }
+
+    private void SetupCashbox()
+    {
+        denominationPanel.Dock = DockStyle.Fill;
+        denominationPanel.BackColor = Color.Gray;
+        denominationPanel.DenominationClicked += OnPanelDenominationClicked;
+    }
+
+    private void AddActionButton(string text, EventHandler onClick)
+    {
+        Button button = new Button();
+        button.Text = text;
+        button.Size = new Size(150, 40);
+        button.Click += onClick;
+        buttonPanel.Controls.Add(button);
+    }
+
+    // ---------- Program.cs connects these two to the Game's events ----------
+
     public void ShowState(Order order, int amountPaid, int changeGiven, int score)
     {
         orderDisplay.ShowOrder(order, amountPaid, changeGiven);
@@ -58,15 +114,7 @@ public class GameScreen : Form
         statusLabel.Text = message;
     }
 
-    private void AddActionButton(string text, int x, EventHandler onClick)
-    {
-        Button button = new Button();
-        button.Text = text;
-        button.Location = new Point(x, 460);
-        button.Size = new Size(150, 40);
-        button.Click += onClick;
-        Controls.Add(button);
-    }
+    // ---------- events going out ----------
 
     private void OnPanelDenominationClicked(Denomination piece)
     {

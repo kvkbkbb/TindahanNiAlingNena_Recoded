@@ -1,27 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kevin\\Documents\\Visual Studio CODE\\Tindahan_ni_Aling_Nena-main\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded.csproj": {}
+    "C:\\Users\\Kev\\Documents\\Visual Studio\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kevin\\Documents\\Visual Studio CODE\\Tindahan_ni_Aling_Nena-main\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded.csproj": {
+    "C:\\Users\\Kev\\Documents\\Visual Studio\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kevin\\Documents\\Visual Studio CODE\\Tindahan_ni_Aling_Nena-main\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded.csproj",
+        "projectUniqueName": "C:\\Users\\Kev\\Documents\\Visual Studio\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded.csproj",
         "projectName": "TindahanNiAlingNena_Recoded",
-        "projectPath": "C:\\Users\\Kevin\\Documents\\Visual Studio CODE\\Tindahan_ni_Aling_Nena-main\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded.csproj",
-        "packagesPath": "C:\\Users\\Kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kevin\\Documents\\Visual Studio CODE\\Tindahan_ni_Aling_Nena-main\\TindahanNiAlingNena_Recoded\\obj\\",
+        "projectPath": "C:\\Users\\Kev\\Documents\\Visual Studio\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded.csproj",
+        "packagesPath": "C:\\Users\\Kev\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Kev\\Documents\\Visual Studio\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded\\TindahanNiAlingNena_Recoded\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Kev\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0-windows"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0-windows": {
@@ -57,6 +58,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.33, 8.0.33]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[8.0.33, 8.0.33]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.33, 8.0.33]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.33, 8.0.33]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -65,7 +84,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.402/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
