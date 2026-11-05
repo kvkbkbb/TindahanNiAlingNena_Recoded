@@ -31,7 +31,17 @@ public class ProductCatalog
         new Product("Cigarette Stick", 8),
         new Product("Matchbox", 3),
         new Product("Candle", 5),
-        new Product("Bath Soap", 22)
+        new Product("Bath Soap", 22),
+
+        // 60+ pesos
+        new Product("1 Liter Soft Drink", 65),
+        new Product("1 Kilo Rice", 60),
+        new Product("Cooking Oil Bottle", 75),
+        new Product("Laundry Powder Pack", 68),
+        new Product("Dishwashing Liquid Bottle", 62),
+        new Product("Canned Meat Loaf Large", 70),
+        new Product("Coffee Jar", 95),
+        new Product("Dozen Eggs", 110)
     };
 
     public Product GetRandomProduct()
