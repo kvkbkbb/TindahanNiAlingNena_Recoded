@@ -24,6 +24,7 @@ public class GameScreen : Form
     private readonly DenominationPanel denominationPanel = new();
     private readonly Label scoreLabel = new();
     private readonly TableLayoutPanel orderPanel = new();
+    private Button giveChangeButton = null!;
     private Control header = null!;
 
     public GameScreen()
@@ -116,7 +117,6 @@ public class GameScreen : Form
         orderDisplay.ForeColor = InkColor;
         orderDisplay.Font = new Font("Segoe UI", 10F);
         orderDisplay.Padding = new Padding(36, 24, 36, 16);
-        orderDisplay.TextAlign = ContentAlignment.TopCenter;
     }
 
     private void SetupButtonPanel()
@@ -132,7 +132,7 @@ public class GameScreen : Form
             buttonPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F / buttonPanel.ColumnCount));
         }
 
-        AddActionButton("Give change", GreenColor, Color.White, OnGiveChangeButtonClicked);
+        giveChangeButton = AddActionButton("Give Change: P0", GreenColor, Color.White, OnGiveChangeButtonClicked);
         AddActionButton("Clear", Color.White, InkColor, OnClearButtonClicked, true);
         AddActionButton("Ask for more", Color.FromArgb(222, 164, 75), Color.FromArgb(53, 46, 34), OnAskForMoreButtonClicked);
     }
@@ -195,7 +195,7 @@ public class GameScreen : Form
             Math.Max(200, drawerTop - orderTop - 14));
     }
 
-    private void AddActionButton(string text, Color backColor, Color foreColor, EventHandler onClick, bool outlined = false)
+    private Button AddActionButton(string text, Color backColor, Color foreColor, EventHandler onClick, bool outlined = false)
     {
         Button button = new()
         {
@@ -217,12 +217,21 @@ public class GameScreen : Form
         button.Click += (_, _) => AudioPlayer.PlaySound("button.wav");
         button.Click += onClick;
         buttonPanel.Controls.Add(button, buttonPanel.Controls.Count, 0);
+        return button;
     }
 
-    public void ShowState(Order order, int amountPaid, int changeGiven, int score)
+    public void ShowState(
+        Order order,
+        string customerName,
+        int amountPaid,
+        int changeGiven,
+        int score,
+        IReadOnlyDictionary<int, int> drawerCounts)
     {
-        orderDisplay.ShowOrder(order, amountPaid, changeGiven);
+        orderDisplay.ShowOrder(order, customerName, amountPaid);
+        giveChangeButton.Text = $"Give Change: P{changeGiven}";
         scoreLabel.Text = $"SCORE  {score}";
+        denominationPanel.ShowPieceCounts(drawerCounts);
     }
 
     public void ShowMessage(string message)
@@ -231,9 +240,9 @@ public class GameScreen : Form
             MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
-    public int ShowCustomer(CustomerState state, int? customerNumber = null)
+    public int ShowCustomer(CustomerState state, int? customerNumber = null, Gender? gender = null)
     {
-        return customerDisplay.DisplayCustomer(state, customerNumber);
+        return customerDisplay.DisplayCustomer(state, customerNumber, gender);
     }
 
     public void ClearCustomer()

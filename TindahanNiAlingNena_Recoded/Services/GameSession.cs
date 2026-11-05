@@ -20,10 +20,10 @@ public class GameSession
     private List<Denomination> changeGiven = new List<Denomination>();
     private int score = 0;
 
-    // order, amount paid, change being given, score
-    public event Action<Order, int, int, int>? StateChanged;
+    // order, customer name, amount paid, change being given, score, drawer counts by denomination
+    public event Action<Order, string, int, int, int, IReadOnlyDictionary<int, int>>? StateChanged;
     public event Action<string>? MessageSent;
-    public event Action? CustomerStarted;
+    public event Action<Gender>? CustomerStarted;
 
     public GameSession()
     {
@@ -76,6 +76,7 @@ public class GameSession
         if (!changeChecker.IsChangeCorrect(orderTotal, amountPaid, changeGiven))
         {
             changeGiven.Clear();
+            score = 0;
             SendFailure("Wrong change! Try again.");
             SendState();
             return;
@@ -107,8 +108,7 @@ public class GameSession
             return;
         }
 
-        List<Denomination> additionalPayment =
-            paymentGenerator.GenerateExactPayment(orderTotal - amountPaid);
+        List<Denomination> additionalPayment = paymentGenerator.GenerateOverPayment(orderTotal - amountPaid);
         currentPayment.AddRange(additionalPayment);
         cashDrawer.AddPieces(additionalPayment);
         SendState();
@@ -116,7 +116,7 @@ public class GameSession
 
     private void StartNextCustomer()
     {
-        Order order = orderGenerator.GenerateOrder(1, 4);
+        Order order = orderGenerator.GenerateOrder(1, 4 + score);
         int customerType = random.Next(100);
 
         if (customerType < 10)
@@ -136,7 +136,7 @@ public class GameSession
         cashDrawer.AddPieces(currentPayment);
         changeGiven.Clear();
 
-        CustomerStarted?.Invoke();
+        CustomerStarted?.Invoke(currentCustomer.GetGender());
         SendState();
     }
 
@@ -147,11 +147,20 @@ public class GameSession
             return;
         }
 
+        Dictionary<int, int> availableDrawerCounts = cashDrawer.GetPieceCounts();
+        foreach (IGrouping<int, Denomination> selectedGroup in changeGiven.GroupBy(piece => piece.Value))
+        {
+            availableDrawerCounts[selectedGroup.Key] =
+                cashDrawer.GetPieceCount(selectedGroup.Key) - selectedGroup.Count();
+        }
+
         StateChanged.Invoke(
             currentCustomer.GetOrder(),
+            currentCustomer.GetName(),
             changeChecker.GetTotal(currentPayment),
             changeChecker.GetTotal(changeGiven),
-            score);
+            score,
+            availableDrawerCounts);
     }
 
     private void SendMessage(string message)

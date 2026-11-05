@@ -75,6 +75,13 @@ public class CashDrawer
         return count;
     }
 
+    public Dictionary<int, int> GetPieceCounts()
+    {
+        return pieces
+            .GroupBy(piece => piece.Value)
+            .ToDictionary(group => group.Key, group => group.Count());
+    }
+
     // Total pesos in the drawer.
     public int GetTotalAmount()
     {

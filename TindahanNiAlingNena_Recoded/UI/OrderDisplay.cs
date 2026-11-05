@@ -2,34 +2,40 @@ using TindahanNiAlingNena_Recoded.Models;
 
 namespace TindahanNiAlingNena_Recoded.UI;
 
-public class OrderDisplay : Label
+public class OrderDisplay : Panel
 {
-    private readonly Label changeTotalLabel = new();
+    private readonly Label receiptContent = new();
 
     public OrderDisplay()
     {
+        AutoScroll = true;
+        AutoScrollMargin = new Size(0, 12);
+        BackColor = Color.White;
+        BackgroundImageLayout = ImageLayout.Stretch;
+
         string receiptPath = Path.Combine("Assets", "Receipt.png");
         if (File.Exists(receiptPath))
         {
             BackgroundImage = Image.FromFile(receiptPath);
-            BackgroundImageLayout = ImageLayout.Stretch;
         }
 
-        changeTotalLabel.Dock = DockStyle.Bottom;
-        changeTotalLabel.Height = 34;
-        changeTotalLabel.Margin = Padding.Empty;
-        changeTotalLabel.BackColor = Color.Transparent;
-        changeTotalLabel.ForeColor = ForeColor;
-        changeTotalLabel.Font = new Font(Font, FontStyle.Bold);
-        changeTotalLabel.TextAlign = ContentAlignment.MiddleCenter;
-        Controls.Add(changeTotalLabel);
+        Padding = new Padding(36, 72, 36, 16);
+        receiptContent.AutoSize = true;
+        receiptContent.BackColor = Color.Transparent;
+        receiptContent.Dock = DockStyle.Top;
+        receiptContent.ForeColor = Color.FromArgb(44, 54, 45);
+        receiptContent.TextAlign = ContentAlignment.TopCenter;
+        Controls.Add(receiptContent);
+
+        SizeChanged += (_, _) => UpdateReceiptContentWidth();
+        UpdateReceiptContentWidth();
     }
 
-    public void ShowOrder(Order order, int amountPaid, int changeGiven)
+    public void ShowOrder(Order order, string customerName, int amountPaid)
     {
         List<string> lines = new()
         {
-            "ORDER SUMMARY",
+            $"{customerName}'s Order",
             string.Empty
         };
 
@@ -41,7 +47,15 @@ public class OrderDisplay : Label
         lines.Add(string.Empty);
         lines.Add($"TOTAL                 ₱{order.GetTotalCost()}");
         lines.Add($"Customer paid      ₱{amountPaid}");
-        Text = string.Join(Environment.NewLine, lines);
-        changeTotalLabel.Text = $"CHANGE SELECTED     ₱{changeGiven}";
+        receiptContent.Text = string.Join(Environment.NewLine, lines);
+    }
+
+    private void UpdateReceiptContentWidth()
+    {
+        int contentWidth = Math.Max(
+            1,
+            ClientSize.Width - Padding.Horizontal - SystemInformation.VerticalScrollBarWidth);
+        receiptContent.MaximumSize = new Size(contentWidth, 0);
+        receiptContent.Location = new Point(Padding.Left, Padding.Top);
     }
 }

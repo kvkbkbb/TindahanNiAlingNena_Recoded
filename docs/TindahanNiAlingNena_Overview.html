@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tindahan ni Aling Nena (Recoded) — Architecture and OOP Brief</title>
+<style>
+  @page { size:A4; margin:0; }
+  *{ box-sizing:border-box; }
+  :root{
+    --ink:#22322a;
+    --muted:#5d6f63;
+    --green:#27523d;
+    --green2:#30694b;
+    --green3:#396e4e;
+    --gold:#b8872c;
+    --gold-l:#dea44b;
+    --cream:#f6f2e8;
+    --line:#d9e0da;
+  }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family:"Segoe UI",Arial,sans-serif;
+    color:var(--ink);
+    font-size:9.6pt;
+    line-height:1.45;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    width:210mm;
+    height:297mm;
+    padding:15mm 17mm 14mm;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    background:#fff;
+  }
+  .page:last-child{ page-break-after:auto; }
+
+  .kicker{
+    font-size:7.4pt;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:700;
+    margin:0 0 3mm;
+  }
+  h1{
+    font-size:23pt;
+    line-height:1.1;
+    color:var(--green);
+    margin:0 0 2mm;
+    letter-spacing:-.01em;
+  }
+  .sub{
+    font-size:10.2pt;
+    color:var(--muted);
+    margin:0 0 5mm;
+  }
+  .rule{
+    height:2.4pt;
+    width:100%;
+    background:linear-gradient(90deg,var(--green) 0 58%,var(--gold-l) 58% 100%);
+    margin:0 0 5mm;
+  }
+
+  /* -------- page 1 -------- */
+  .figframe{
+    border:1px solid #e3e7e1;
+    background:#fcfdfb;
+    padding:4mm 3mm 3mm;
+    margin:0 0 4mm;
+  }
+  .figframe svg{ width:100%; height:auto; display:block; }
+  .cap{
+    font-size:8.3pt;
+    color:var(--muted);
+    margin:0;
+  }
+  .cap b{ color:var(--ink); }
+
+  .layers{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:2.6mm;
+    margin-top:4mm;
+  }
+  .layer{
+    border-left:2.5pt solid var(--green);
+    background:#f7faf8;
+    padding:2.4mm 3mm;
+  }
+  .layer h4{
+    margin:0 0 .8mm;
+    font-size:8.4pt;
+    color:var(--green);
+    letter-spacing:.05em;
+    text-transform:uppercase;
+  }
+  .layer p{ margin:0; font-size:8.2pt; color:var(--muted); line-height:1.4; }
+  .layer.a{ border-left-color:var(--gold); background:#fbf7ec; }
+
+  .note{
+    border:1px solid #dfe5df;
+    border-left:3pt solid var(--gold-l);
+    background:#fbf8ef;
+    padding:2.8mm 3.4mm;
+    font-size:8.5pt;
+    color:#5e5136;
+    margin-top:4mm;
+  }
+  .note b{ color:#6d4f14; }
+
+  .foot{
+    position:absolute;
+    left:17mm; right:17mm; bottom:8mm;
+    border-top:1px solid #dfe5df;
+    padding-top:2mm;
+    font-size:7.6pt;
+    color:#7b8b80;
+    display:flex;
+    justify-content:space-between;
+  }
+
+  /* -------- page 2 -------- */
+  .pillars{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3.4mm;
+    margin:0 0 4mm;
+  }
+  .pillar{
+    border:1px solid var(--line);
+    border-top:3.2pt solid var(--green);
+    background:#fbfdfb;
+    padding:3.4mm 4mm 3.2mm;
+    break-inside:avoid;
+  }
+  .pillar.gold{ border-top-color:var(--gold-l); background:#fcfaf3; }
+  .pillar h3{
+    margin:0 0 1mm;
+    font-size:11.2pt;
+    color:var(--green);
+    letter-spacing:.01em;
+  }
+  .pillar .mech{
+    font-size:8.2pt;
+    color:var(--muted);
+    margin:0 0 2.2mm;
+    line-height:1.4;
+  }
+  .pillar ul{
+    margin:0;
+    padding-left:4.4mm;
+    font-size:8.4pt;
+    line-height:1.42;
+  }
+  .pillar li{ margin:0 0 1mm; }
+  .pillar code{
+    font-family:"Cascadia Mono",Consolas,monospace;
+    font-size:7.9pt;
+    background:#f0f4ef;
+    border:1px solid #e2e8e1;
+    border-radius:2px;
+    padding:0 .6mm;
+    color:#1f4a33;
+  }
+  .where{
+    font-size:7.3pt;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#8a9a8e;
+    margin:0 0 1.6mm;
+    font-weight:700;
+  }
+
+  .hier{
+    border:1px solid #e3e7e1;
+    background:#fcfdfb;
+    padding:3.4mm 4mm 2.4mm;
+    margin-top:1mm;
+  }
+  .hier h3{
+    margin:0 0 2.6mm;
+    font-size:9.4pt;
+    color:var(--green);
+    letter-spacing:.04em;
+    text-transform:uppercase;
+  }
+  .hier svg{ width:100%; height:auto; display:block; }
+
+  .legend{
+    display:flex;
+    gap:6mm;
+    font-size:7.7pt;
+    color:var(--muted);
+    margin-top:2.4mm;
+  }
+  .legend span::before{
+    content:"";
+    display:inline-block;
+    width:2.6mm; height:2.6mm;
+    margin-right:1.4mm;
+    vertical-align:-.2mm;
+  }
+  .legend .l1::before{ background:#27523d; }
+  .legend .l3::before{ background:#fff; border:1px solid #4a8363; }
+  .legend .plain::before{ display:none; }
+</style>
+</head>
+<body>
+
+<!-- ================= PAGE 1 ================= -->
+<section class="page">
+  <p class="kicker">Architecture Brief</p>
+  <h1>Tindahan ni Aling Nena (Recoded)</h1>
+  <p class="sub">System architecture and the four pillars of object-oriented programming</p>
+  <div class="rule"></div>
+
+  <div class="figframe">
+    <svg viewBox="0 0 900 730" role="img" aria-label="Layered architecture diagram">
+      <defs>
+        <marker id="ar1" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+          <path d="M0,0 L9,4.5 L0,9 z" fill="#7c8d81"/>
+        </marker>
+        <style>
+          .band{ fill:#fbfcfa; stroke:#dbe3dc; stroke-width:1.2; }
+          .lbl{ font:700 9px 'Segoe UI',Arial; fill:#8a9a8e; letter-spacing:1.6px; }
+          .box{ fill:#ffffff; stroke:#4a8363; stroke-width:1.4; }
+          .boxt{ font:600 13px 'Segoe UI',Arial; fill:#1f3829; }
+          .boxs{ font:400 10.5px 'Segoe UI',Arial; fill:#65756a; }
+          .app{ fill:#f7f3e8; stroke:#b8872c; stroke-width:1.5; }
+          .appt{ font:700 15px 'Segoe UI',Arial; fill:#6d4f14; }
+          .chip{ fill:#ffffff; stroke:#d6c39a; stroke-width:1; }
+          .chipt{ font:600 9.5px 'Segoe UI',Arial; fill:#7a5b1d; }
+          .dom{ fill:#eef5f0; stroke:#27523d; stroke-width:1.5; }
+          .domt{ font:600 12.5px 'Segoe UI',Arial; fill:#1f3829; }
+          .doms{ font:400 10px 'Segoe UI',Arial; fill:#4f6356; }
+          .infra{ fill:#f4f4f0; stroke:#a7b0a9; stroke-width:1.2; stroke-dasharray:4 3; }
+          .inft{ font:600 10.5px 'Segoe UI',Arial; fill:#4c5a50; }
+        </style>
+      </defs>
+
+      <text x="22" y="412" transform="rotate(-90 22 412)" class="lbl" text-anchor="middle">DEPENDENCY DIRECTION</text>
+
+      <rect x="95" y="20" width="765" height="52" rx="5" fill="#f7f3e8" stroke="#b8872c" stroke-width="1.5"/>
+      <text x="477" y="43" text-anchor="middle" class="appt">Program.cs &mdash; composition root</text>
+      <text x="477" y="60" text-anchor="middle" class="boxs">creates both halves, wires their events, starts the WinForms message loop</text>
+
+      <line x1="477" y1="72" x2="477" y2="96" stroke="#7c8d81" stroke-width="1.4" marker-end="url(#ar1)"/>
+
+      <rect x="40" y="100" width="820" height="110" class="band"/>
+      <text x="54" y="117" class="lbl">PRESENTATION LAYER &middot; UI/</text>
+      <rect x="54" y="126" width="141" height="72" rx="4" class="box"/>
+      <text x="124" y="150" text-anchor="middle" class="boxt">GameScreen</text>
+      <text x="124" y="167" text-anchor="middle" class="boxs">Form, layout,</text>
+      <text x="124" y="181" text-anchor="middle" class="boxs">intention events</text>
+
+      <rect x="210" y="126" width="141" height="72" rx="4" class="box"/>
+      <text x="280" y="150" text-anchor="middle" class="boxt">CustomerDisplay</text>
+      <text x="280" y="167" text-anchor="middle" class="boxs">PictureBox,</text>
+      <text x="280" y="181" text-anchor="middle" class="boxs">portrait rendering</text>
+
+      <rect x="366" y="126" width="141" height="72" rx="4" class="box"/>
+      <text x="436" y="150" text-anchor="middle" class="boxt">OrderDisplay</text>
+      <text x="436" y="167" text-anchor="middle" class="boxs">Panel,</text>
+      <text x="436" y="181" text-anchor="middle" class="boxs">receipt text</text>
+
+      <rect x="522" y="126" width="141" height="72" rx="4" class="box"/>
+      <text x="592" y="150" text-anchor="middle" class="boxt">DenominationPanel</text>
+      <text x="592" y="167" text-anchor="middle" class="boxs">drawer grid,</text>
+      <text x="592" y="181" text-anchor="middle" class="boxs">live counts</text>
+
+      <rect x="678" y="126" width="141" height="72" rx="4" class="box"/>
+      <text x="748" y="150" text-anchor="middle" class="boxt">DenominationButton</text>
+      <text x="748" y="167" text-anchor="middle" class="boxs">PictureBox,</text>
+      <text x="748" y="181" text-anchor="middle" class="boxs">money image</text>
+
+      <line x1="477" y1="210" x2="477" y2="240" stroke="#7c8d81" stroke-width="1.4" marker-end="url(#ar1)"/>
+
+      <rect x="40" y="244" width="820" height="90" class="band"/>
+      <text x="54" y="261" class="lbl">APPLICATION LAYER &middot; SERVICES/</text>
+      <rect x="54" y="270" width="765" height="52" rx="5" class="app"/>
+      <text x="70" y="292" class="appt">GameSession</text>
+      <text x="70" y="309" class="boxs">owns round state, validates actions, computes score, raises notifications</text>
+      <rect x="470" y="281" width="76" height="24" rx="12" class="chip"/>
+      <text x="508" y="297" text-anchor="middle" class="chipt">state</text>
+      <rect x="556" y="281" width="76" height="24" rx="12" class="chip"/>
+      <text x="594" y="297" text-anchor="middle" class="chipt">scoring</text>
+      <rect x="642" y="281" width="76" height="24" rx="12" class="chip"/>
+      <text x="680" y="297" text-anchor="middle" class="chipt">events</text>
+      <rect x="728" y="281" width="76" height="24" rx="12" class="chip"/>
+      <text x="766" y="297" text-anchor="middle" class="chipt">rules</text>
+
+      <line x1="477" y1="334" x2="477" y2="364" stroke="#7c8d81" stroke-width="1.4" marker-end="url(#ar1)"/>
+
+      <rect x="40" y="368" width="820" height="110" class="band"/>
+      <text x="54" y="385" class="lbl">DOMAIN SERVICES &middot; SERVICES/</text>
+
+      <rect x="54" y="394" width="120" height="70" rx="4" class="box"/>
+      <text x="114" y="418" text-anchor="middle" class="boxt">ProductCatalog</text>
+      <text x="114" y="435" text-anchor="middle" class="boxs">six fixed</text>
+      <text x="114" y="449" text-anchor="middle" class="boxs">products</text>
+
+      <rect x="183" y="394" width="120" height="70" rx="4" class="box"/>
+      <text x="243" y="418" text-anchor="middle" class="boxt">OrderGenerator</text>
+      <text x="243" y="435" text-anchor="middle" class="boxs">random</text>
+      <text x="243" y="449" text-anchor="middle" class="boxs">order lines</text>
+
+      <rect x="312" y="394" width="120" height="70" rx="4" class="box"/>
+      <text x="372" y="418" text-anchor="middle" class="boxt">PaymentGenerator</text>
+      <text x="372" y="435" text-anchor="middle" class="boxs">builds exact,</text>
+      <text x="372" y="449" text-anchor="middle" class="boxs">over, under</text>
+
+      <rect x="441" y="394" width="120" height="70" rx="4" class="box"/>
+      <text x="501" y="418" text-anchor="middle" class="boxt">ChangeChecker</text>
+      <text x="501" y="435" text-anchor="middle" class="boxs">sums and</text>
+      <text x="501" y="449" text-anchor="middle" class="boxs">validates</text>
+
+      <rect x="570" y="394" width="120" height="70" rx="4" class="box"/>
+      <text x="630" y="418" text-anchor="middle" class="boxt">CashDrawer</text>
+      <text x="630" y="435" text-anchor="middle" class="boxs">piece inventory</text>
+      <text x="630" y="449" text-anchor="middle" class="boxs">and totals</text>
+
+      <rect x="699" y="394" width="120" height="70" rx="4" class="box"/>
+      <text x="759" y="418" text-anchor="middle" class="boxt">NameGenerator</text>
+      <text x="759" y="435" text-anchor="middle" class="boxs">Filipino</text>
+      <text x="759" y="449" text-anchor="middle" class="boxs">customer names</text>
+
+      <line x1="477" y1="478" x2="477" y2="508" stroke="#7c8d81" stroke-width="1.4" marker-end="url(#ar1)"/>
+
+      <rect x="40" y="512" width="820" height="130" class="band"/>
+      <text x="54" y="529" class="lbl">DOMAIN MODEL &middot; MODELS/</text>
+
+      <rect x="54" y="538" width="120" height="90" rx="4" class="dom"/>
+      <text x="114" y="560" text-anchor="middle" class="domt">Product</text>
+      <text x="66" y="580" class="doms">- name: string</text>
+      <text x="66" y="594" class="doms">- price: int</text>
+      <text x="66" y="612" class="doms">+ GetPrice()</text>
+
+      <rect x="194" y="538" width="150" height="90" rx="4" class="dom"/>
+      <text x="269" y="560" text-anchor="middle" class="domt">Order</text>
+      <text x="206" y="580" class="doms">- products: List&lt;Product&gt;</text>
+      <text x="206" y="594" class="doms">- totalCost: int</text>
+      <text x="206" y="612" class="doms">+ AddProduct()</text>
+
+      <rect x="364" y="538" width="230" height="90" rx="4" class="dom"/>
+      <text x="479" y="560" text-anchor="middle" class="domt">Customer &laquo;abstract&raquo;</text>
+      <text x="376" y="580" class="doms">- name, gender, order</text>
+      <text x="376" y="594" class="doms">+ GeneratePayment(gen) *</text>
+      <text x="376" y="612" class="doms" fill="#7a5b1d">Exact &middot; Overpaying &middot; Underpaying</text>
+
+      <rect x="614" y="538" width="200" height="90" rx="4" class="dom"/>
+      <text x="714" y="560" text-anchor="middle" class="domt">Denomination &laquo;abstract&raquo;</text>
+      <text x="626" y="580" class="doms">+ Value: int</text>
+      <text x="626" y="594" class="doms">+ PlaySound() *</text>
+      <text x="626" y="612" class="doms" fill="#7a5b1d">Bill &middot; Coin  (both sealed)</text>
+
+      <line x1="477" y1="642" x2="477" y2="668" stroke="#7c8d81" stroke-width="1.4" marker-end="url(#ar1)"/>
+
+      <rect x="40" y="672" width="820" height="44" class="band"/>
+      <rect x="54" y="680" width="230" height="28" rx="4" class="infra"/>
+      <text x="169" y="698" text-anchor="middle" class="inft">AudioPlayer &mdash; static WAV cache</text>
+      <rect x="300" y="680" width="250" height="28" rx="4" class="infra"/>
+      <text x="425" y="698" text-anchor="middle" class="inft">System.Media.SoundPlayer</text>
+      <rect x="566" y="680" width="248" height="28" rx="4" class="infra"/>
+      <text x="690" y="698" text-anchor="middle" class="inft">Assets/ (images, sounds)</text>
+    </svg>
+  </div>
+
+  <p class="cap"><b>Layered architecture with a passive view.</b> Code dependencies point downward only. The UI raises intention events; <code>GameSession</code> validates them and notifies back through <code>StateChanged</code>, <code>MessageSent</code>, and <code>CustomerStarted</code>. The lower layers never reference UI types.</p>
+
+  <div class="layers">
+    <div class="layer a"><h4>Composition root</h4><p><b>Program.cs</b> constructs the session and the form, then wires the eight subscriptions.</p></div>
+    <div class="layer"><h4>Presentation</h4><p>WinForms controls that render state and translate clicks into events.</p></div>
+    <div class="layer"><h4>Application</h4><p><b>GameSession</b> holds the round: customer, payment, selection, score, drawer.</p></div>
+    <div class="layer"><h4>Domain</h4><p>Models plus stateless services: products, orders, money, change rules.</p></div>
+  </div>
+
+  <div class="note"><b>Design intent.</b> The architecture separates what the player sees from the rules being enforced. A round is validated by <code>ChangeChecker</code> against the order total and amount paid, while the drawer is a shared inventory of nine reusable denomination objects.</div>
+
+  <div class="foot">
+    <span>Tindahan ni Aling Nena (Recoded) &middot; Architecture Brief</span>
+    <span>Page 1 of 2</span>
+  </div>
+</section>
+
+<!-- ================= PAGE 2 ================= -->
+<section class="page">
+  <p class="kicker">Object-Oriented Organization</p>
+  <h1>The Four Pillars in This Program</h1>
+  <p class="sub">Each pillar mapped to the classes, files, and mechanisms that actually implement it</p>
+  <div class="rule"></div>
+
+  <div class="pillars">
+
+    <div class="pillar">
+      <div class="where">Models/ &middot; Money/ &middot; Services/</div>
+      <h3>1. Encapsulation</h3>
+      <p class="mech">State is private; the class exposes only the operations that preserve its invariants.</p>
+      <ul>
+        <li><code>Product</code> keeps <code>name</code> and <code>price</code> private behind getters.</li>
+        <li><code>Order.totalCost</code> changes only in <code>AddProduct</code>, so the running total cannot drift.</li>
+        <li><code>CashDrawer.pieces</code> is mutated only by <code>AddPiece</code>, <code>AddPieces</code>, <code>RemovePiece</code>.</li>
+        <li><code>Bill</code> / <code>Coin</code> use private constructors; callers receive shared instances from a static registry.</li>
+      </ul>
+    </div>
+
+    <div class="pillar gold">
+      <div class="where">Models/ &middot; Services/</div>
+      <h3>2. Abstraction</h3>
+      <p class="mech">Base types state <em>what</em> must happen; subclasses and services supply the <em>how</em>.</p>
+      <ul>
+        <li><code>Customer</code> is abstract and declares <code>GeneratePayment(PaymentGenerator)</code> with no body.</li>
+        <li><code>Denomination</code> is abstract: <code>Value</code>, <code>ImagePath</code>, and abstract <code>PlaySound()</code>.</li>
+        <li><code>ChangeChecker</code> hides arithmetic behind <code>GetTotal</code>, <code>CountPieces</code>, and <code>IsChangeCorrect</code>.</li>
+        <li><code>GameSession</code> exposes commands and events, not its internal round fields.</li>
+      </ul>
+    </div>
+
+    <div class="pillar">
+      <div class="where">Models/Customers/ &middot; Models/Money/</div>
+      <h3>3. Inheritance</h3>
+      <p class="mech">Two small, closed hierarchies share identity and behaviour through a common base.</p>
+      <ul>
+        <li><code>ExactPayingCustomer</code>, <code>OverpayingCustomer</code>, and <code>UnderpayingCustomer</code> derive from <code>Customer</code>.</li>
+        <li><code>Bill</code> and <code>Coin</code> derive from <code>Denomination</code> and are marked <code>sealed</code>.</li>
+        <li>Subclasses reuse the base name, gender, and order fields and override only payment generation / sound.</li>
+        <li>UI classes also inherit framework behaviour: <code>GameScreen : Form</code>, <code>OrderDisplay : Panel</code>.</li>
+      </ul>
+    </div>
+
+    <div class="pillar gold">
+      <div class="where">Runtime dispatch &middot; events</div>
+      <h3>4. Polymorphism</h3>
+      <p class="mech">One call site, several runtime behaviours &mdash; through virtual methods and delegates.</p>
+      <ul>
+        <li><code>piece.PlaySound()</code> runs <code>Bill.PlaySound</code> or <code>Coin.PlaySound</code> from one loop.</li>
+        <li><code>customer.GeneratePayment(gen)</code> selects exact, overpaying, or underpaying behaviour at runtime.</li>
+        <li>Events (<code>Action&lt;T&gt;</code>) let <code>Program</code> bind handlers without the publisher knowing the subscriber.</li>
+        <li>Control overrides such as <code>OnPaint</code> and <code>Dispose</code> specialise framework behaviour.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="hier">
+    <h3>How the hierarchies are organised</h3>
+    <svg viewBox="0 0 780 250" role="img" aria-label="Inheritance hierarchy of Customer and Denomination">
+      <defs>
+        <marker id="tri" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+          <path d="M0,0 L12,6 L0,12 z" fill="#ffffff" stroke="#27523d" stroke-width="1.2"/>
+        </marker>
+        <style>
+          .base{ fill:#eef5f0; stroke:#27523d; stroke-width:1.6; }
+          .sub{ fill:#ffffff; stroke:#4a8363; stroke-width:1.3; }
+          .bt{ font:600 13px 'Segoe UI',Arial; fill:#1f3829; }
+          .st{ font:600 11.5px 'Segoe UI',Arial; fill:#2d4c3a; }
+          .ss{ font:400 9.8px 'Segoe UI',Arial; fill:#65756a; }
+          .hdr{ font:700 9px 'Segoe UI',Arial; fill:#8a9a8e; letter-spacing:1.4px; }
+          .ln{ stroke:#27523d; stroke-width:1.3; fill:none; }
+        </style>
+      </defs>
+
+      <text x="20" y="16" class="hdr">PAYER HIERARCHY</text>
+      <text x="430" y="16" class="hdr">MONEY HIERARCHY</text>
+
+      <!-- Customer -->
+      <rect x="20" y="28" width="300" height="46" rx="4" class="base"/>
+      <text x="170" y="48" text-anchor="middle" class="bt">Customer &#171;abstract&#187;</text>
+      <text x="170" y="64" text-anchor="middle" class="ss">name, gender, order + GeneratePayment() *</text>
+
+      <path class="ln" d="M70 122 V96 H334 V122"/>
+      <path class="ln" d="M202 122 V96"/>
+      <path class="ln" d="M170 96 V74" marker-end="url(#tri)"/>
+
+      <rect x="8" y="122" width="124" height="42" rx="4" class="sub"/>
+      <text x="70" y="140" text-anchor="middle" class="st">ExactPaying</text>
+      <text x="70" y="155" text-anchor="middle" class="ss">sum = total</text>
+
+      <rect x="140" y="122" width="124" height="42" rx="4" class="sub"/>
+      <text x="202" y="140" text-anchor="middle" class="st">Overpaying</text>
+      <text x="202" y="155" text-anchor="middle" class="ss">sum &gt; total</text>
+
+      <rect x="272" y="122" width="124" height="42" rx="4" class="sub"/>
+      <text x="334" y="140" text-anchor="middle" class="st">Underpaying</text>
+      <text x="334" y="155" text-anchor="middle" class="ss">sum &lt; total</text>
+
+      <text x="20" y="196" class="ss">Each subclass overrides <tspan font-family="Cascadia Mono,Consolas,monospace">GeneratePayment</tspan>; the session treats all three as a <tspan font-family="Cascadia Mono,Consolas,monospace">Customer</tspan>.</text>
+
+      <!-- Denomination -->
+      <rect x="430" y="28" width="330" height="46" rx="4" class="base"/>
+      <text x="595" y="48" text-anchor="middle" class="bt">Denomination &#171;abstract&#187;</text>
+      <text x="595" y="64" text-anchor="middle" class="ss">Value, ImagePath + PlaySound() *</text>
+
+      <path class="ln" d="M520 122 V96 H678 V122"/>
+      <path class="ln" d="M595 96 V74" marker-end="url(#tri)"/>
+
+      <rect x="446" y="122" width="148" height="42" rx="4" class="sub"/>
+      <text x="520" y="140" text-anchor="middle" class="st">Bill &#171;sealed&#187;</text>
+      <text x="520" y="155" text-anchor="middle" class="ss">20 &middot; 50 &middot; 100 &middot; 200 &middot; 500 &middot; 1000</text>
+
+      <rect x="604" y="122" width="148" height="42" rx="4" class="sub"/>
+      <text x="678" y="140" text-anchor="middle" class="st">Coin &#171;sealed&#187;</text>
+      <text x="678" y="155" text-anchor="middle" class="ss">1 &middot; 5 &middot; 10</text>
+
+      <text x="430" y="196" class="ss">Nine shared instances total, created once in static registries.</text>
+
+      <line x1="20" y1="216" x2="760" y2="216" stroke="#d9e0da" stroke-width="1"/>
+      <text x="20" y="236" class="ss"><tspan font-weight="600" fill="#27523d">Organising rule:</tspan> abstract base for shared state and contract, concrete subclasses for the varying behaviour, <tspan font-family="Cascadia Mono,Consolas,monospace">sealed</tspan> where the hierarchy ends.</text>
+    </svg>
+    <div class="legend">
+      <span class="l1">Abstract base</span>
+      <span class="l3">Concrete subclass</span>
+      <span class="plain">Hollow arrow points to the base class</span>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Tindahan ni Aling Nena (Recoded) &middot; Architecture Brief</span>
+    <span>Page 2 of 2</span>
+  </div>
+</section>
+
+</body>
+</html>

@@ -29,9 +29,9 @@ public class CustomerDisplay : PictureBox
         Invalidate();
     }
 
-    public int DisplayCustomer(CustomerState state, int? customerNumber = null)
+    public int DisplayCustomer(CustomerState state, int? customerNumber = null, Gender? gender = null)
     {
-        int numberToShow = customerNumber ?? random.Next(1, TotalCustomers + 1);
+        int numberToShow = customerNumber ?? GetRandomCustomerNumber(gender);
         string genderFolder = GetGenderFolder(numberToShow);
         string fileName = $"C{numberToShow}.jpg";
         string imagePath = Path.Combine("Assets", "Customers", state.ToString(), genderFolder, fileName);
@@ -44,6 +44,19 @@ public class CustomerDisplay : PictureBox
         Invalidate();
 
         return numberToShow;
+    }
+
+    private int GetRandomCustomerNumber(Gender? gender)
+    {
+        int[] numbers = gender switch
+        {
+            Gender.Male => menNumbers,
+            Gender.Female => womenNumbers,
+            null => Enumerable.Range(1, TotalCustomers).ToArray(),
+            _ => throw new ArgumentOutOfRangeException(nameof(gender))
+        };
+
+        return numbers[random.Next(numbers.Length)];
     }
 
     protected override void OnPaint(PaintEventArgs e)

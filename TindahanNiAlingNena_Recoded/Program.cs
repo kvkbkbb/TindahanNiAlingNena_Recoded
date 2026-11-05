@@ -15,7 +15,7 @@ screen.AskForMoreClicked += session.AskForMore;
 // game changes -> screen display
 session.StateChanged += screen.ShowState;
 session.MessageSent += screen.ShowMessage;
-session.CustomerStarted += () => screen.ShowCustomer(CustomerState.Normal);
+session.CustomerStarted += gender => screen.ShowCustomer(CustomerState.Normal, gender: gender);
 
 session.Start();
 Application.Run(screen);

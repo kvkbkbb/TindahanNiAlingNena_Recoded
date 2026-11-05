@@ -7,13 +7,12 @@ public class DenominationPanel : TableLayoutPanel
 {
     public event Action<Denomination>? DenominationClicked;
 
-    private const int CoinSize = 54;
-
     private TableLayoutPanel billArea = new TableLayoutPanel();
     private TableLayoutPanel coinArea = new TableLayoutPanel();
     private readonly Label heading = new();
     private readonly Label instruction = new();
     private readonly TableLayoutPanel drawer = new();
+    private readonly Dictionary<int, Label> countLabels = new();
 
     public DenominationPanel()
     {
@@ -107,7 +106,6 @@ public class DenominationPanel : TableLayoutPanel
         foreach (Coin coin in Coin.Denominations.Values)
         {
             DenominationButton coinButton = new DenominationButton(coin);
-            coinButton.Size = new Size(CoinSize, CoinSize);   // small, so bills look bigger
             coinButton.Anchor = AnchorStyles.None;            // centered in its slot
 
             coinArea.Controls.Add(CreateSlot(coinButton));
@@ -115,23 +113,60 @@ public class DenominationPanel : TableLayoutPanel
     }
 
     // Puts a button inside its own box, like a compartment in a cash drawer.
-    private TableLayoutPanel CreateSlot(DenominationButton button)
+    private Panel CreateSlot(DenominationButton button)
     {
-        TableLayoutPanel slot = new TableLayoutPanel();
-        slot.Dock = DockStyle.Fill;
-        slot.Margin = new Padding(5, 4, 5, 4);
-        slot.BackColor = Color.FromArgb(255, 253, 247);
-        slot.BorderStyle = BorderStyle.FixedSingle;
+        Panel slot = new()
+        {
+            Dock = DockStyle.Fill,
+            Margin = new Padding(5, 4, 5, 4),
+            BackColor = Color.FromArgb(255, 253, 247),
+            BorderStyle = BorderStyle.FixedSingle
+        };
 
-        slot.ColumnCount = 1;
-        slot.RowCount = 1;
-        slot.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f));
-        slot.RowStyles.Add(new RowStyle(SizeType.Percent, 100f));
+        Label countLabel = new()
+        {
+            AutoSize = true,
+            BackColor = Color.FromArgb(242, 236, 222),
+            ForeColor = Color.FromArgb(44, 54, 45),
+            Font = new Font("Segoe UI", 8F, FontStyle.Bold),
+            Margin = Padding.Empty,
+            Padding = new Padding(3, 1, 3, 1),
+            Text = "× 0"
+        };
+        countLabels[button.GetDenomination().Value] = countLabel;
 
         button.DoubleClick += OnDenominationButtonClicked;
         slot.Controls.Add(button);
+        slot.Controls.Add(countLabel);
+
+        void PositionSlotControls(object? sender, EventArgs e)
+        {
+            const int imageInset = 4;
+            int imageWidth = Math.Max(0, slot.ClientSize.Width - imageInset * 2);
+            int imageHeight = Math.Max(0, slot.ClientSize.Height - imageInset * 2);
+            button.Size = new Size(imageWidth, imageHeight);
+            button.Location = new Point(imageInset, imageInset);
+            countLabel.Location = new Point(
+                Math.Max(0, slot.ClientSize.Width - countLabel.Width - 3),
+                Math.Max(0, slot.ClientSize.Height - countLabel.Height - 3));
+        }
+
+        slot.SizeChanged += PositionSlotControls;
+        countLabel.SizeChanged += PositionSlotControls;
+        countLabel.BringToFront();
+        PositionSlotControls(slot, EventArgs.Empty);
 
         return slot;
+    }
+
+    public void ShowPieceCounts(IReadOnlyDictionary<int, int> pieceCounts)
+    {
+        foreach ((int value, Label countLabel) in countLabels)
+        {
+            int count = pieceCounts.TryGetValue(value, out int available) ? available : 0;
+            countLabel.Text = $"× {count}";
+            countLabel.AccessibleName = $"{count} pieces of {value} pesos";
+        }
     }
 
     private void OnDenominationButtonClicked(object? sender, EventArgs e)
