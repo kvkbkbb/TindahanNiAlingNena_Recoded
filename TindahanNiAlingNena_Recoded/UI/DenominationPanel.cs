@@ -3,40 +3,112 @@ using TindahanNiAlingNena_Recoded.Models.Money;
 
 namespace TindahanNiAlingNena_Recoded.UI;
 
-public class DenominationPanel : FlowLayoutPanel
+public class DenominationPanel : TableLayoutPanel
 {
-    // GameScreen listens to this, like a BindableEvent in Roblox
     public event Action<Denomination>? DenominationClicked;
+
+    private const int CoinSize = 60;
+
+    private TableLayoutPanel billArea = new TableLayoutPanel();
+    private TableLayoutPanel coinArea = new TableLayoutPanel();
 
     public DenominationPanel()
     {
-        // So the for loop is reversed.
-        List<Bill> bills = new List<Bill>(Bill.Denominations.Values);
-        for (int i = bills.Count - 1; i >= 0; i--)
+        BackColor = Color.FromArgb(40, 40, 40);
+        Padding = new Padding(10);
+
+        // two sides: bills on the left, coins on the right
+        ColumnCount = 2;
+        RowCount = 1;
+        ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75f));
+        ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25f));
+        RowStyles.Add(new RowStyle(SizeType.Percent, 100f));
+
+        SetupBillArea();
+        SetupCoinArea();
+
+        Controls.Add(billArea, 0, 0);
+        Controls.Add(coinArea, 1, 0);
+    }
+
+    private void SetupBillArea()
+    {
+        billArea.Dock = DockStyle.Fill;
+        billArea.ColumnCount = 6;
+        billArea.RowCount = 1;
+
+        for (int i = 0; i < billArea.ColumnCount; i++)
         {
-            AddButton(bills[i]);
+            billArea.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f / 6));
+        }
+
+        billArea.RowStyles.Add(new RowStyle(SizeType.Percent, 100f));
+
+        // largest bill first
+        List<Bill> bills = new List<Bill>(Bill.Denominations.Values);
+        bills.Reverse();
+
+        foreach (Bill bill in bills)
+        {
+            DenominationButton billButton = new DenominationButton(bill);
+            billButton.Anchor = AnchorStyles.None;   // centered in its slot, keeps its own size
+
+            billArea.Controls.Add(CreateSlot(billButton));
+        }
+    }
+
+    private void SetupCoinArea()
+    {
+        coinArea.Dock = DockStyle.Fill;
+        coinArea.ColumnCount = 1;
+        coinArea.RowCount = 3;
+
+        coinArea.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f));
+
+        for (int i = 0; i < coinArea.RowCount; i++)
+        {
+            coinArea.RowStyles.Add(new RowStyle(SizeType.Percent, 100f / 3));
         }
 
         foreach (Coin coin in Coin.Denominations.Values)
         {
-            AddButton(coin);
+            DenominationButton coinButton = new DenominationButton(coin);
+            coinButton.Size = new Size(CoinSize, CoinSize);   // small, so bills look bigger
+            coinButton.Anchor = AnchorStyles.None;            // centered in its slot
+
+            coinArea.Controls.Add(CreateSlot(coinButton));
         }
     }
 
-    private void AddButton(Denomination denomination)
+    // Puts a button inside its own box, like a compartment in a cash drawer.
+    private TableLayoutPanel CreateSlot(DenominationButton button)
     {
-        DenominationButton button = new DenominationButton(denomination);
-        button.Click += OnButtonClicked;
-        Controls.Add(button);
+        TableLayoutPanel slot = new TableLayoutPanel();
+        slot.Dock = DockStyle.Fill;
+        slot.Margin = new Padding(4);
+        slot.BackColor = Color.FromArgb(75, 75, 75);
+        slot.BorderStyle = BorderStyle.Fixed3D;
+
+        slot.ColumnCount = 1;
+        slot.RowCount = 1;
+        slot.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f));
+        slot.RowStyles.Add(new RowStyle(SizeType.Percent, 100f));
+
+        button.DoubleClick += OnDenominationButtonClicked;   // use Click for single click
+        slot.Controls.Add(button);
+
+        return slot;
     }
 
-    private void OnButtonClicked(object? sender, EventArgs e)
+    private void OnDenominationButtonClicked(object? sender, EventArgs e)
     {
         DenominationButton clickedButton = (DenominationButton)sender!;
         Denomination clickedDenomination = clickedButton.GetDenomination();
 
-        // DenominationClicked is an event, and an event with no subscribers is null. Kaya may check before invoking.
-        if (DenominationClicked == null) {return;}
+        if (DenominationClicked == null)
+        {
+            return;
+        }
 
         DenominationClicked.Invoke(clickedDenomination);
     }

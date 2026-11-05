@@ -1,3 +1,4 @@
+// UI/GameScreen.cs
 using TindahanNiAlingNena_Recoded.Models;
 using TindahanNiAlingNena_Recoded.Models.Money;
 
@@ -14,6 +15,7 @@ public class GameScreen : Form
     private FlowLayoutPanel buttonPanel = new FlowLayoutPanel();
     private FlowLayoutPanel infoPanel = new FlowLayoutPanel();
 
+    private CustomerDisplay customerDisplay = new CustomerDisplay();
     private OrderDisplay orderDisplay = new OrderDisplay();
     private DenominationPanel denominationPanel = new DenominationPanel();
     private Label statusLabel = new Label();
@@ -26,17 +28,20 @@ public class GameScreen : Form
         Height = 750;
 
         SetupMainLayout();
+        SetupCustomerDisplay();
         SetupOrderDisplay();
         SetupButtonPanel();
         SetupInfoPanel();
         SetupCashbox();
 
         // Controls.Add(control, column, row)
+        mainLayout.Controls.Add(customerDisplay, 0, 0);
+        mainLayout.SetRowSpan(customerDisplay, 3);          // covers rows 0 to 2 on the left side
         mainLayout.Controls.Add(orderDisplay, 1, 0);
         mainLayout.Controls.Add(buttonPanel, 1, 1);
         mainLayout.Controls.Add(infoPanel, 1, 2);
         mainLayout.Controls.Add(denominationPanel, 0, 3);
-        mainLayout.SetColumnSpan(denominationPanel, 2);   // cashbox stretches across both columns
+        mainLayout.SetColumnSpan(denominationPanel, 2);     // cashbox stretches across both columns
 
         Controls.Add(mainLayout);
     }
@@ -56,6 +61,11 @@ public class GameScreen : Form
         mainLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 12f));   // action buttons
         mainLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 10f));   // score and status
         mainLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 43f));   // cashbox
+    }
+
+    private void SetupCustomerDisplay()
+    {
+        customerDisplay.Dock = DockStyle.Fill;
     }
 
     private void SetupOrderDisplay()
@@ -101,7 +111,7 @@ public class GameScreen : Form
         buttonPanel.Controls.Add(button);
     }
 
-    // ---------- Program.cs connects these two to the Game's events ----------
+    // ---------- Program.cs connects these to the Game's events ----------
 
     public void ShowState(Order order, int amountPaid, int changeGiven, int score)
     {
@@ -112,6 +122,18 @@ public class GameScreen : Form
     public void ShowMessage(string message)
     {
         statusLabel.Text = message;
+    }
+
+    // Shows a customer. Returns the customer number so the same one can be shown again later.
+    public int ShowCustomer(CustomerState state, int? customerNumber = null)
+    {
+        return customerDisplay.DisplayCustomer(state, customerNumber);
+    }
+
+    // Empties the customer area so only the background shows.
+    public void ClearCustomer()
+    {
+        customerDisplay.DisplayBackground();
     }
 
     // ---------- events going out ----------

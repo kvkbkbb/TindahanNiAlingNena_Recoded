@@ -47,3 +47,13 @@ C:\Users\Kev\Documents\Visual Studio\TindahanNiAlingNena_Recoded\TindahanNiAling
 C:\Users\Kev\Documents\Visual Studio\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net8.0-windows\TindahanNiAlingNena_Recoded.pdb
 C:\Users\Kev\Documents\Visual Studio\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net8.0-windows\TindahanNiAlingNena_Recoded.genruntimeconfig.cache
 C:\Users\Kev\Documents\Visual Studio\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\obj\Debug\net8.0-windows\ref\TindahanNiAlingNena_Recoded.dll
+C:\Users\Kev\Documents\Visual Studio\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Men\C1.jpg
+C:\Users\Kev\Documents\Visual Studio\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Men\C10.jpg
+C:\Users\Kev\Documents\Visual Studio\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Men\C3.jpg
+C:\Users\Kev\Documents\Visual Studio\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Men\C5.jpg
+C:\Users\Kev\Documents\Visual Studio\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Men\C6.jpg
+C:\Users\Kev\Documents\Visual Studio\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Men\C9.jpg
+C:\Users\Kev\Documents\Visual Studio\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Women\C2.jpg
+C:\Users\Kev\Documents\Visual Studio\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Women\C4.jpg
+C:\Users\Kev\Documents\Visual Studio\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Women\C7.jpg
+C:\Users\Kev\Documents\Visual Studio\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\TindahanNiAlingNena_Recoded\bin\Debug\net8.0-windows\Assets\Customers\Normal\Women\C8.jpg
